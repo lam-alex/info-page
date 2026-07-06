@@ -1,0 +1,62 @@
+{
+  "socials": [
+    { "name": "linkedin", "link": "https://www.linkedin.com/in/aliaksei-lahutsik/" },
+    { "name": "telegram", "link": "https://t.me/alex_lam92" },
+    { "name": "discord", "link": "https://discordapp.com/users/238991216430153728" },
+    { "name": "github", "link": "https://github.com/lam-alex" }
+  ],
+  "experience": [
+    {
+      "dateStart": 1727773200,
+      "dateEnd": 1769936400,
+      "companyName": "COCA Wallet",
+      "position": "Fullstack Developer"
+    },
+    {
+      "dateStart": 1690880400,
+      "dateEnd": 1725181200,
+      "companyName": "Spatium Feeless Wallet",
+      "position": "Fullstack Developer"
+    },
+    {
+      "dateStart": 1580547600,
+      "dateEnd": 1690880400,
+      "companyName": "ProjectMedia Ltd",
+      "position": "Fullstack Developer"
+    },
+    {
+      "dateStart": 1554109200,
+      "dateEnd": 1580547600,
+      "companyName": "EsterStar LLC",
+      "position": "Fullstack Developer"
+    },
+    {
+      "dateStart": 1459501200,
+      "dateEnd": 1554109200,
+      "companyName": "Web2Innovation LLC",
+      "position": "Fullstack Developer"
+    },
+    {
+      "dateStart": 1401609600,
+      "dateEnd": 1459501200,
+      "companyName": "SkyIncom LLC",
+      "position": "Fullstack Developer"
+    },
+    {
+      "dateStart": 1388563200,
+      "dateEnd": 1401609600,
+      "companyName": "Asimpl LLC",
+      "position": "Fullstack Developer"
+    },
+    {
+      "dateStart": 1354348800,
+      "dateEnd": 1385884800,
+      "companyName": "Vehicle Fleet No. 19, Branch of OJSC \"Minoblavtotrans\"",
+      "position": "Software Engineer"
+    }
+  ],
+  "skills": {
+    "frontend": ["ReactJS", "Typescript", "Redux", "Styled-components", "Css", "Scss", "HTML", "Axios"],
+    "backend": ["Nodejs", "Express", "REST API", "Redis", "Mongo", "MySQL", "Sequelize", "TypeORM", "Git", "Solidity", "Docker"]
+  }
+}
