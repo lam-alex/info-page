@@ -1,16 +1,18 @@
 {
+  "startExperience": 1354348800,
   "socials": [
     { "name": "linkedin", "link": "https://www.linkedin.com/in/aliaksei-lahutsik/" },
     { "name": "telegram", "link": "https://t.me/alex_lam92" },
     { "name": "discord", "link": "https://discordapp.com/users/238991216430153728" },
     { "name": "github", "link": "https://github.com/lam-alex" }
   ],
-  "experience": [
+  "experiences": [
     {
       "dateStart": 1727773200,
       "dateEnd": 1769936400,
       "companyName": "COCA Wallet",
-      "position": "Fullstack Developer"
+      "position": "Fullstack Developer",
+      "projectStack": ["ReactJS", "Typescript", "Redux", "NodeJS", "Express", "Mongo", "Redis", "Capacitor", "Git Flow", "Docker"]
     },
     {
       "dateStart": 1690880400,

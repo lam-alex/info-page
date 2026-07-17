@@ -6,3 +6,4 @@ export * from './section-title';
 export * from './tag';
 export * from './timeline';
 export * from './socials';
+export * from './skeleton';
