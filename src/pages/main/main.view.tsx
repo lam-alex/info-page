@@ -3,15 +3,16 @@ import moment from 'moment';
 import { FC, memo } from 'react';
 import Typewriter from 'typewriter-effect';
 
-import { Box, Layout, ProfileCard, Socials, Tag, Timeline } from '../../components';
+import { Box, Layout, ProfileCard, Skeleton, Socials, Tag, Timeline } from '../../components';
 import { Typography } from '../../components/typography';
+import { MainData } from '../../config/store/slices/main';
 import { convertToRem, effects, theme } from '../../config/theme';
 
 import { LeftSideWrapper, Section } from './main.styles';
 
-export type MainViewProps = {};
+export type MainViewProps = MainData;
 
-export const MainView: FC<MainViewProps> = memo<MainViewProps>(() => (
+export const MainView: FC<MainViewProps> = memo<MainViewProps>(({ experiences, startExperience, skills, socials }) => (
   <Layout
     leftSide={
       <LeftSideWrapper>
@@ -34,18 +35,11 @@ export const MainView: FC<MainViewProps> = memo<MainViewProps>(() => (
             </Typography>
           </Box>
 
-          {/* <Typography component="p" styles="bodySmall" customStyles={{ justifyContent: 'center' }}>
-            © 2026 Alex Lam. All Rights Reserved
-          </Typography> */}
+          <Socials items={socials} />
 
-          <Socials
-            items={[
-              { name: 'linkedin', link: 'https://www.linkedin.com/in/aliaksei-lahutsik/' },
-              { name: 'telegram', link: 'https://t.me/alex_lam92' },
-              { name: 'discord', link: ' https://discordapp.com/users/238991216430153728' },
-              { name: 'github', link: 'https://github.com/lam-alex' },
-            ]}
-          />
+          <Typography component="p" styles="extraSmall" customStyles={{ textAlign: 'center', margin: 0 }}>
+            © 2026 Alex Lam. All Rights Reserved
+          </Typography>
         </ProfileCard>
       </LeftSideWrapper>
     }
@@ -129,62 +123,16 @@ export const MainView: FC<MainViewProps> = memo<MainViewProps>(() => (
             </Typography>
 
             <Typography component="p" styles="body">
-              I have {moment.unix(1354348800).fromNow(true)} of experience
+              I have{' '}
+              {startExperience > -1 ? (
+                moment.unix(startExperience).fromNow(true)
+              ) : (
+                <Skeleton component="span" width={50} height={13} customStyles={{ display: 'inline-block', verticalAlign: 'middle' }} />
+              )}{' '}
+              of experience
             </Typography>
 
-            <Timeline
-              items={[
-                {
-                  dateStart: 1727773200,
-                  dateEnd: 1769936400,
-                  companyName: 'COCA Wallet',
-                  position: 'Fullstack Developer',
-                  projectStack: ['ReactJS', 'Typescript', 'Redux', 'NodeJS', 'Express', 'Mongo', 'Redis', 'Capacitor', 'Git Flow', 'Docker'],
-                },
-                {
-                  dateStart: 1690880400,
-                  dateEnd: 1725181200,
-                  companyName: 'Spatium Feeless Wallet',
-                  position: 'Fullstack Developer',
-                },
-                {
-                  dateStart: 1580547600,
-                  dateEnd: 1690880400,
-                  companyName: 'ProjectMedia Ltd',
-                  position: 'Fullstack Developer',
-                },
-                {
-                  dateStart: 1554109200,
-                  dateEnd: 1580547600,
-                  companyName: 'EsterStar LLC',
-                  position: 'Fullstack Developer',
-                },
-                {
-                  dateStart: 1459501200,
-                  dateEnd: 1554109200,
-                  companyName: 'Web2Innovation LLC',
-                  position: 'Fullstack Developer',
-                },
-                {
-                  dateStart: 1401609600,
-                  dateEnd: 1459501200,
-                  companyName: 'SkyIncom LLC',
-                  position: 'Fullstack Developer',
-                },
-                {
-                  dateStart: 1388563200,
-                  dateEnd: 1401609600,
-                  companyName: 'Asimpl LLC',
-                  position: 'Fullstack Developer',
-                },
-                {
-                  dateStart: 1354348800,
-                  dateEnd: 1385884800,
-                  companyName: 'Vehicle Fleet No. 19, Branch of OJSC "Minoblavtotrans"',
-                  position: 'Software Engineer',
-                },
-              ]}
-            />
+            <Timeline items={experiences} />
           </Box>
         </Section>
 
@@ -215,14 +163,9 @@ export const MainView: FC<MainViewProps> = memo<MainViewProps>(() => (
               </Typography>
 
               <Box modifiers={effects.horizontalList} data-aos="fade-up">
-                <Tag>ReactJS</Tag>
-                <Tag>Typescript</Tag>
-                <Tag>Redux</Tag>
-                <Tag>Styled-components</Tag>
-                <Tag>Css</Tag>
-                <Tag>Scss</Tag>
-                <Tag>HTML</Tag>
-                <Tag>Axios</Tag>
+                {skills.frontend.map((f, i) => (
+                  <Tag key={`fe-${i}`}>{f}</Tag>
+                ))}
               </Box>
             </Box>
 
@@ -240,17 +183,9 @@ export const MainView: FC<MainViewProps> = memo<MainViewProps>(() => (
               </Typography>
 
               <Box modifiers={effects.horizontalList} data-aos="fade-up">
-                <Tag>Nodejs</Tag>
-                <Tag>Express</Tag>
-                <Tag>REST API</Tag>
-                <Tag>Redis</Tag>
-                <Tag>Mongo</Tag>
-                <Tag>MySQL</Tag>
-                <Tag>Sequelize</Tag>
-                <Tag>TypeORM</Tag>
-                <Tag>Git</Tag>
-                <Tag>Solidity</Tag>
-                <Tag>Docker</Tag>
+                {skills.backend.map((b, i) => (
+                  <Tag key={`be-${i}`}>{b}</Tag>
+                ))}
               </Box>
             </Box>
           </Box>

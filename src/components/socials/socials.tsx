@@ -1,9 +1,12 @@
-import { FC, memo, ReactElement, useCallback } from 'react';
+import { memo, ReactElement, useCallback } from 'react';
 import { Discord, Github, LinkedIn, Telegram } from '../../assets/icons';
+import { Skeleton } from '../skeleton';
 
 import { SocialItemStyles, SocialsStyles } from './socials.styles';
 
 const socialList = ['linkedin', 'telegram', 'discord', 'github'] as const;
+
+export const isSocialList = (s: string): s is SocialList => Array.from(socialList as readonly string[]).includes(s);
 
 export type SocialList = (typeof socialList)[number];
 
@@ -12,11 +15,11 @@ export type SocialItem = {
   link: string;
 };
 
-export type SocialsProps = {
-  items: SocialItem[];
-};
+export interface SocialsProps<T> {
+  items: T[] | null;
+}
 
-export const Socials: FC<SocialsProps> = memo(({ items }) => {
+export const Socials = memo(<T extends { name: string; link: string }>({ items }: SocialsProps<T>) => {
   const icons: Record<SocialList, ReactElement> = {
     discord: <Discord />,
     github: <Github />,
@@ -28,11 +31,18 @@ export const Socials: FC<SocialsProps> = memo(({ items }) => {
 
   return (
     <SocialsStyles>
-      {items.map(({ name, link }, index) => (
+      {items?.map(({ name, link }, index) => (
         <SocialItemStyles key={`social-item-${name}-${index}`} onClick={() => handlerClick(link)}>
-          {icons[name]}
+          {isSocialList(name) && icons[name]}
         </SocialItemStyles>
-      ))}
+      )) ?? (
+        <>
+          <Skeleton height={50} />
+          <Skeleton height={50} />
+          <Skeleton height={50} />
+          <Skeleton height={50} />
+        </>
+      )}
     </SocialsStyles>
   );
 });
